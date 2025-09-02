@@ -1,6 +1,10 @@
 package com.example.classwork01;
 
+import android.content.ComponentName;
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,5 +24,36 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+    /**
+     * Handles the "onClick" event for the "Take Picture" button.
+     * @param view
+     * Add this code to the manifest to advertise that this application needs the camera:
+     * <uses-feature android:name="android.hardware.camera"
+     *                   android:required="true" />
+     */
+    public void takePicture(View view) {
+
+        // There are two types of Intent objects: explicit (when you specify the class),
+        // and implicit, when you are asking for whether an app can meet the need without having
+        // to know the class
+        Intent x = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+        // Check to see if there is an app that can handle this intent. If not, then return.
+        // There is a warning here:
+        // Consider adding a <queries> declaration to your manifest when calling this method
+        // Why?
+        ComponentName componentName = x.resolveActivity(getPackageManager());
+
+        // Stop here if componentName is null; this means that no activity from any other app
+        // matches our requested Intent type
+        if (componentName == null) {
+            return;
+        }
+
+        // Start the activity and return the photo
+        startActivityForResult(x, 987);
+
     }
 }
