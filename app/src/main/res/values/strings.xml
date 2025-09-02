@@ -1,3 +1,6 @@
+<!-- This is here so that you can specify hardcoded strings in activities (views)-->
 <resources>
     <string name="app_name">Class Work 01</string>
+    <string name="todo">TODO</string>
+    <string name="take_picture">Take Picture</string>
 </resources>

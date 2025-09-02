@@ -12,6 +12,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.io.File;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -29,9 +31,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Handles the "onClick" event for the "Take Picture" button.
      * @param view
-     * Add this code to the manifest to advertise that this application needs the camera:
-     * <uses-feature android:name="android.hardware.camera"
-     *                   android:required="true" />
+     * AndroidManifest.xml has XML added to it to enable saving images, etc.
      */
     public void takePicture(View view) {
 
@@ -52,8 +52,19 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        // Start the activity and return the photo
-        startActivityForResult(x, 987);
+        // Create the File where the photo should go
+        File photoFile = null;
+
+
+
+        /*
+        Generally, any photos that the user captures with the device camera should be saved on the
+        device in the public external storage so they are accessible by all apps. The proper
+        directory for shared photos is provided by getExternalStoragePublicDirectory(), with the
+        DIRECTORY_PICTURES argument.
+         */
+
+
 
     }
 }
